@@ -20,11 +20,12 @@ public class InfoPrompt extends JFrame {
 		
 		if (difficulty == "easy") {
 			backgroundHolder = new JLabel(infoBack);
+			setContentPane(backgroundHolder); 
 		} else if (difficulty == "hard") {
 			backgroundHolder = new JLabel(infoBackHARD);
+			setContentPane(backgroundHolder); 
 		}
-		getContentPane();
-		setContentPane(backgroundHolder);
+		                                                                             
 		
 		
 		setVisible(true);
