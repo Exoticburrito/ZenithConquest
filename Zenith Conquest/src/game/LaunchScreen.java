@@ -4,12 +4,13 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.net.URL;
 
 public class LaunchScreen extends JFrame {
-	
-	ImageIcon titleScr = new ImageIcon("images/spacegif.gif");
-	ImageIcon easyImg = new ImageIcon("images/easyButton.png");
-	ImageIcon hardImg = new ImageIcon("images/hardButton.png");
+
+	ImageIcon titleScr = new ImageIcon("Zenith Conquest/images/spacegif.gif");
+	ImageIcon easyImg = new ImageIcon("Zenith Conquest/images/easyButton.png");
+	ImageIcon hardImg = new ImageIcon("Zenith Conquest/images/hardButton.png");
 	JLabel bckHold;
 	JButton easyBtn, hardBtn;
 	
@@ -23,7 +24,7 @@ public class LaunchScreen extends JFrame {
 		setContentPane(bckHold);
 		setLayout(new GridBagLayout());
 		
-		setIconImage(Toolkit.getDefaultToolkit().getImage("images/Untitled.png"));
+		setIconImage(Toolkit.getDefaultToolkit().getImage("Zenith Conquest/images/Untitled.png"));
 		GridBagConstraints gbc = new GridBagConstraints();
 		
 		Handler handler = new Handler();
