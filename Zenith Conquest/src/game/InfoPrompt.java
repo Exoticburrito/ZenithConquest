@@ -4,19 +4,28 @@ import java.awt.*;
 import javax.swing.*;
 
 public class InfoPrompt extends JFrame {
-	private ImageIcon infoBack = new ImageIcon("images/infoScreenBack.png");
-	private ImageIcon infoBackHARD = new ImageIcon("images/infoScreenBackHARD.jpg");
-	private JLabel backgroundHolder = new JLabel(infoBack);
+	private ImageIcon infoBack = new ImageIcon("Zenith Conqeust/images/infoScreenBack.png");
+	private ImageIcon infoBackHARD = new ImageIcon("Zenith Conquest/images/infoScreenBackHARD.jpg");
+	
+	private JLabel backgroundHolder;
 	
 	public InfoPrompt(String difficulty) {
 		super("Zenith Conquest");
 		setSize(550,550);
-		setResizable(false);
+		
 		setLocationRelativeTo(null);
+		setResizable(false);
+		setLayout(new GridBagLayout());
+		setIconImage(LaunchScreen.getTASKBAR_ICON());
+		
+		if (difficulty == "easy") {
+			backgroundHolder = new JLabel(infoBack);
+		} else if (difficulty == "hard") {
+			backgroundHolder = new JLabel(infoBackHARD);
+		}
+		getContentPane();
 		setContentPane(backgroundHolder);
 		
-		JButton btn = new JButton();
-		add(btn);
 		
 		setVisible(true);
 	}

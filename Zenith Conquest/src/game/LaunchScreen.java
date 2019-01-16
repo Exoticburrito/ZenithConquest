@@ -4,10 +4,11 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.net.URL;
+
 
 public class LaunchScreen extends JFrame {
-
+	public static Image TASKBAR_ICON = new ImageIcon("Zenith Conquest/images/TASKBARICON.png").getImage();		
+	
 	ImageIcon titleScr = new ImageIcon("Zenith Conquest/images/spacegif.gif");
 	ImageIcon easyImg = new ImageIcon("Zenith Conquest/images/easyButton.png");
 	ImageIcon hardImg = new ImageIcon("Zenith Conquest/images/hardButton.png");
@@ -24,7 +25,7 @@ public class LaunchScreen extends JFrame {
 		setContentPane(bckHold);
 		setLayout(new GridBagLayout());
 		
-		setIconImage(Toolkit.getDefaultToolkit().getImage("Zenith Conquest/images/Untitled.png"));
+		setIconImage(TASKBAR_ICON);
 		GridBagConstraints gbc = new GridBagConstraints();
 		
 		Handler handler = new Handler();
@@ -47,6 +48,10 @@ public class LaunchScreen extends JFrame {
 		setVisible(true);
 	}
 	
+	
+	public static Image getTASKBAR_ICON() {
+		return TASKBAR_ICON;
+	}
 	public static void main(String[] args) {
 		LaunchScreen frm = new LaunchScreen();
 	}
