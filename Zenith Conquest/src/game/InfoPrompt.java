@@ -12,6 +12,7 @@ public class InfoPrompt extends JFrame {
 	
 	JLabel backgroundHolder, uNamePrompt;
 	JTextField txt1;
+	JRadioButton ship1Rad, ship2Rad, ship3Rad;
 	
 	public String USER_NAME;
 	
@@ -36,9 +37,20 @@ public class InfoPrompt extends JFrame {
 		
 		
 		txt1 = new JTextField(16);
-			txt1.setBounds(50,100,100,25);
+			txt1.setBounds(50,50,100,25);
 			txt1.addActionListener(hand);
+			txt1.setBackground(new Color(200, 191, 231));
 		add(txt1);
+		
+		ship1Rad = new JRadioButton("Ship One: Galactacus");
+			ship1Rad.setBounds(50, 184, 130, 25);			// setBounds(x,y, width,height)
+			ship1Rad.setFont(new Font("Calibri", Font.ITALIC, 12));
+			add(ship1Rad);
+		ship2Rad = new JRadioButton("Ship Two: SS Qiaz Omur");
+		
+		ship3Rad = new JRadioButton("Ship Three: Gamma Odyssey");
+		ButtonGroup shipRads = new ButtonGroup();
+		
 		
 		uNamePrompt = new JLabel("PLACEHOLDER_IMAGE");
 		
@@ -59,6 +71,7 @@ public class InfoPrompt extends JFrame {
 		public void actionPerformed(ActionEvent e) {
 			if (e.getSource() == txt1) {
 				USER_NAME = txt1.getText();	
+				System.out.println(USER_NAME);
 			}
 		}
 	}
