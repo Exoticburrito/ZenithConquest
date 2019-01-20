@@ -1,3 +1,4 @@
+
 package game;
 
 import java.awt.*;
@@ -6,11 +7,19 @@ import java.awt.event.ActionListener;
 
 import javax.swing.*;
 
-public class InfoPrompt extends JFrame {
-	ImageIcon infoBack = new ImageIcon("Zenith Conquest/images/infoScreenBack.jpg");
-	ImageIcon infoBackHARD = new ImageIcon("Zenith Conquest/images/infoScreenBackHARD.jpg");
+public class InfoPrompt extends JFrame implements ActionListener {
+	ImageIcon infoBack = new ImageIcon("images/infoScreenBack.jpg");
+	ImageIcon infoBackHARD = new ImageIcon("images/infoScreenBackHARD.jpg");				// remember to fix images at school, add "Zenith Conquest/" to file path
 	
-	JLabel backgroundHolder, uNamePrompt;
+	ImageIcon namePrompt = new ImageIcon("images/namePrompt.png");
+	ImageIcon shipPrompt = new ImageIcon("images/shipPrompt.png");
+	
+	ImageIcon shipGalactacus = new ImageIcon("images/ree.png");
+	ImageIcon shipUltron = new ImageIcon("images/OmegaUltron.png");
+	ImageIcon shipGammaOdyssey = new ImageIcon("images/GammaOdyssey.png");
+	
+	Font CALIBRI = new Font("Calibri", Font.ITALIC, 16);
+	JLabel backgroundHolder, uNamePrompt, shipPromptHolder, shipHolder;
 	JTextField txt1;
 	JRadioButton ship1Rad, ship2Rad, ship3Rad;
 	
@@ -33,29 +42,44 @@ public class InfoPrompt extends JFrame {
 			setContentPane(backgroundHolder); 
 		}
 		
-		Handler hand = new Handler();
 		
-		
+		uNamePrompt = new JLabel(namePrompt);
+			uNamePrompt.setBounds(12,25,425,25);
+			add(uNamePrompt);
 		txt1 = new JTextField(16);
-			txt1.setBounds(50,50,100,25);
-			txt1.addActionListener(hand);
+			txt1.setBounds(50,60,300,25);
+			txt1.addActionListener(this);
 			txt1.setBackground(new Color(200, 191, 231));
 		add(txt1);
 		
-		ship1Rad = new JRadioButton("Ship One: Galactacus");
-			ship1Rad.setBounds(50, 184, 130, 25);			// setBounds(x,y, width,height)
-			ship1Rad.setFont(new Font("Calibri", Font.ITALIC, 12));
-			add(ship1Rad);
-		ship2Rad = new JRadioButton("Ship Two: SS Qiaz Omur");
+		shipPromptHolder = new JLabel(shipPrompt);
+			shipPromptHolder.setBounds(12, 160, 425, 25);
+			add(shipPromptHolder);
 		
-		ship3Rad = new JRadioButton("Ship Three: Gamma Odyssey");
 		ButtonGroup shipRads = new ButtonGroup();
 		
 		
-		uNamePrompt = new JLabel("PLACEHOLDER_IMAGE");
-		
-		
-		
+		ship1Rad = new JRadioButton("Ship One: Galactacus");
+			ship1Rad.setBounds(50, 190, 175, 25);										// setBounds(x,y, width,height)
+			ship1Rad.setFont(CALIBRI);
+			ship1Rad.addActionListener(this);
+			shipRads.add(ship1Rad);
+			add(ship1Rad);
+		ship2Rad = new JRadioButton("Ship Two: Omega Ultron");
+			ship2Rad.setBounds(50, 275, 190, 25);
+			ship2Rad.setFont(CALIBRI);
+			ship2Rad.addActionListener(this);
+			shipRads.add(ship2Rad);
+			add(ship2Rad);
+		ship3Rad = new JRadioButton("Ship Three: Gamma Odyssey");
+			ship3Rad.setBounds(50, 360, 230, 25);
+			ship3Rad.setFont(CALIBRI);
+			ship3Rad.addActionListener(this);
+			shipRads.add(ship3Rad);
+			add(ship3Rad);
+		shipHolder = new JLabel(shipGalactacus);
+			shipHolder.setBounds(300, 300, 200, 200);
+			add(shipHolder);
 		setVisible(true);
 	}
 	
@@ -65,14 +89,19 @@ public class InfoPrompt extends JFrame {
 	}
 	
 	
-	public class Handler implements ActionListener {
 
-		@Override
-		public void actionPerformed(ActionEvent e) {
-			if (e.getSource() == txt1) {
-				USER_NAME = txt1.getText();	
-				System.out.println(USER_NAME);
-			}
+	public void actionPerformed(ActionEvent e) {
+		if (e.getSource() == txt1) {
+			USER_NAME = txt1.getText();	
+			System.out.println(USER_NAME);
+		}
+		if (e.getSource() == ship1Rad) {
+			shipHolder = new JLabel(shipGalactacus);
+				shipHolder.setBounds(300, 300, 200, 200);
+			add(shipHolder);
 		}
 	}
+
+	
 }
+
