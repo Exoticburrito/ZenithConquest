@@ -4,30 +4,26 @@ package game;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 
 import javax.swing.*;
 
-public class InfoPrompt extends JFrame implements ActionListener {
-	ImageIcon infoBack = new ImageIcon("images/infoScreenBack.jpg");
-	ImageIcon infoBackHARD = new ImageIcon("images/infoScreenBackHARD.jpg");				// remember to fix images at school, add "Zenith Conquest/" to file path
+public class InfoPrompt extends JFrame implements ActionListener, KeyListener, DataHolder {
 	
-	ImageIcon namePrompt = new ImageIcon("images/namePrompt.png");
-	ImageIcon shipPrompt = new ImageIcon("images/shipPrompt.png");
+	private JLabel backgroundHolder, uNamePrompt, shipPromptHolder, shipHolder, readyPrompt;
+	private JTextField txt1;
+	private JRadioButton ship1Rad, ship2Rad, ship3Rad;
+	private JButton startButton;
 	
-	ImageIcon shipGalactacus = new ImageIcon("images/ree.png");
-	ImageIcon shipUltron = new ImageIcon("images/OmegaUltron.png");
-	ImageIcon shipGammaOdyssey = new ImageIcon("images/GammaOdyssey.png");
-	
-	Font CALIBRI = new Font("Calibri", Font.ITALIC, 16);
-	JLabel backgroundHolder, uNamePrompt, shipPromptHolder, shipHolder;
-	JTextField txt1;
-	JRadioButton ship1Rad, ship2Rad, ship3Rad;
-	
-	public String USER_NAME;
+	public String USER_NAME, difficulty;
+	public int shipNum;
 	
 	public InfoPrompt(String difficulty) {
 		super("Zenith Conquest");
 		setSize(550,550);
+		
+		this.difficulty = difficulty;
 		
 		setLocationRelativeTo(null);
 		setResizable(false);
@@ -60,48 +56,103 @@ public class InfoPrompt extends JFrame implements ActionListener {
 		
 		
 		ship1Rad = new JRadioButton("Ship One: Galactacus");
-			ship1Rad.setBounds(50, 190, 175, 25);										// setBounds(x,y, width,height)
+			ship1Rad.setBounds(50, 200, 175, 25);										// setBounds(x,y, width,height)
 			ship1Rad.setFont(CALIBRI);
 			ship1Rad.addActionListener(this);
+			ship1Rad.setSelected(true);
+			ship1Rad.setContentAreaFilled(false);
+			ship1Rad.setForeground(Color.WHITE);
 			shipRads.add(ship1Rad);
 			add(ship1Rad);
 		ship2Rad = new JRadioButton("Ship Two: Omega Ultron");
-			ship2Rad.setBounds(50, 275, 190, 25);
+			ship2Rad.setBounds(50, 285, 190, 25);
 			ship2Rad.setFont(CALIBRI);
 			ship2Rad.addActionListener(this);
+			ship2Rad.setContentAreaFilled(false);
+			ship2Rad.setForeground(Color.WHITE);
 			shipRads.add(ship2Rad);
 			add(ship2Rad);
 		ship3Rad = new JRadioButton("Ship Three: Gamma Odyssey");
-			ship3Rad.setBounds(50, 360, 230, 25);
+			ship3Rad.setBounds(50, 370, 230, 25);
 			ship3Rad.setFont(CALIBRI);
 			ship3Rad.addActionListener(this);
+			ship3Rad.setContentAreaFilled(false);
+			ship3Rad.setForeground(Color.WHITE);
 			shipRads.add(ship3Rad);
 			add(ship3Rad);
+		
 		shipHolder = new JLabel(shipGalactacus);
-			shipHolder.setBounds(300, 300, 200, 200);
+			shipHolder.setBounds(270,150,300,300);
 			add(shipHolder);
+		
+		readyPrompt = new JLabel("");
+			readyPrompt.setBounds(12,425,500,100);
+			readyPrompt.setFont(VCR_OSD);												// if unable to get font working at school, change to Calibri
+			readyPrompt.setForeground(Color.white);
+			add(readyPrompt);
+		startButton = new JButton("Locked n' Loaded");
+			startButton.setBounds(350, 490, 160, 40);
+			add(startButton);
+		pack();
+		
+//		addKeyListener(this);
+		
 		setVisible(true);
 	}
 	
-	
-	public static void main(String[] args) {
-		InfoPrompt f = new InfoPrompt("easy");
-	}
-	
-	
-
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == txt1) {
-			USER_NAME = txt1.getText();	
-			System.out.println(USER_NAME);
+			USER_NAME = txt1.getText();
+			readyPrompt.setText("Are you ready, Captain " + USER_NAME + "?");
 		}
+		
 		if (e.getSource() == ship1Rad) {
-			shipHolder = new JLabel(shipGalactacus);
-				shipHolder.setBounds(300, 300, 200, 200);
-			add(shipHolder);
+			shipHolder.setIcon(setShipIcon(1));
+			shipNum = 1;
+		} else if (e.getSource() == ship2Rad) {
+			shipHolder.setIcon(setShipIcon(2));
+			shipNum = 2;
+		} else if (e.getSource() == ship3Rad) {
+			shipHolder.setIcon(setShipIcon(3));
+			shipNum = 3;
 		}
+ 		
 	}
 
-	
+		
+	public static ImageIcon setShipIcon(int source) { 
+		if (source == 1) {
+			return shipGalactacus;
+		} else if (source == 2) { 
+			return shipUltron;
+		} else if (source == 3) { 
+			return shipGamma;
+		} else {
+			return null;
+		}
+		
+	}
+
+	@Override
+	public void keyPressed(KeyEvent e) {
+		if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+			GameStart game = new GameStart();
+		}
+		
+	}
+
+	@Override
+	public void keyReleased(KeyEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void keyTyped(KeyEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
 }
 

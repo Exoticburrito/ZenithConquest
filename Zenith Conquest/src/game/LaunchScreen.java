@@ -6,14 +6,12 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 
-public class LaunchScreen extends JFrame {
-	public static Image TASKBAR_ICON = new ImageIcon("Zenith Conquest/images/TASKBARICON.png").getImage();		
-	
-	ImageIcon titleScr = new ImageIcon("Zenith Conquest/images/spacegif.gif");
-	ImageIcon easyImg = new ImageIcon("Zenith Conquest/images/easyButton.png");
-	ImageIcon hardImg = new ImageIcon("Zenith Conquest/images/hardButton.png");
+public class LaunchScreen extends JFrame implements DataHolder {
+
 	JLabel bckHold;
 	JButton easyBtn, hardBtn;
+	
+	public String difficulty;
 	
 	public LaunchScreen() {
 		super("Zenith Conquest");
@@ -53,7 +51,9 @@ public class LaunchScreen extends JFrame {
 		return TASKBAR_ICON;
 	}
 	public static void main(String[] args) {
-		LaunchScreen frm = new LaunchScreen();
+		EventQueue.invokeLater(() -> {
+            LaunchScreen ex = new LaunchScreen();
+        });
 	}
 	
 	
@@ -62,10 +62,12 @@ public class LaunchScreen extends JFrame {
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			if (e.getSource() == easyBtn) {
-				InfoPrompt frm = new InfoPrompt("easy");
+				difficulty = "easy";
+				InfoPrompt frm = new InfoPrompt(difficulty);
 				dispose();
 			} else if (e.getSource() == hardBtn) {
-				InfoPrompt frm = new InfoPrompt("hard");
+				difficulty = "hard";
+				InfoPrompt frm = new InfoPrompt(difficulty);
 				dispose();
 			}
 			
